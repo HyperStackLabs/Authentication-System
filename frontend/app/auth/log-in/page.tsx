@@ -1,5 +1,5 @@
 'use client'
-import { Credentials } from "@/types"
+import { Credentials, credentialsSchema } from "@/types"
 import { XFetch } from "@/utils/XFetch"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -11,21 +11,32 @@ const Page = () => {
     })
     const router = useRouter()
     async function Log_in(){
-        if(credentials.password && credentials.email){
-            const response = await XFetch('https://authentication-system-4cka.onrender.com/log-in', {
+        try{
+            const validation = credentialsSchema.safeParse(credentials)
+            if(!validation.success){
+                console.log(validation.error.issues)
+                return
+            }
+            const response = await XFetch('http://localhost:4500/log-in', {
                 body: JSON.stringify({...credentials}),
                 method: 'POST'
             })
             if(response.ok){
                 router.push('/')
             }
+        }catch(error){
+            console.log(error)
         }
     }
   return <>
-    <input type="text" onChange={e => setCredentials({...credentials, email: e.target.value})} />
-    <input type="text" onChange={e => setCredentials({...credentials, password: e.target.value})} />
+    <input type="text" placeholder="email" onChange={e => setCredentials({...credentials, email: e.target.value})} />
+    <input type="text" placeholder="password" onChange={e => setCredentials({...credentials, password: e.target.value})} />
     <button onClick={Log_in} className="bg-gray-400">log in</button>
   </>
 }
 
 export default Page
+
+
+
+// https://authentication-system-4cka.onrender.com/log-in

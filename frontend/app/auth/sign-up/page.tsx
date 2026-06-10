@@ -2,6 +2,7 @@
 import generateID from "@/utils/generateID";
 import { XFetch } from "@/utils/XFetch";
 import { useState } from "react";
+import { UserSchema } from "@/types";
 
 export default function Home() {
   const [credentials, setCredentials] = useState({
@@ -10,15 +11,26 @@ export default function Home() {
     password: ''
   })
   async function Register(){
-    await XFetch('https://authentication-system-4cka.onrender.com/sign-up', {
-      method: 'POST',
-      body: JSON.stringify({...credentials, id: generateID()})
-    })
+    try{
+      const validation  = UserSchema.safeParse(credentials)
+      if(!validation.success){
+        console.log(validation.error.issues)
+        return
+      }
+      await XFetch('http://localhost:4500/sign-up', {
+        method: 'POST',
+        body: JSON.stringify({...credentials, id: generateID()})
+      })
+    }catch(error){
+      console.log(error)
+    }
   }
   return <>
-    <input type="text" onChange={e => setCredentials({...credentials, name: e.target.value})} />
-    <input type="text" onChange={e => setCredentials({...credentials, email: e.target.value})} />
-    <input type="text" onChange={e => setCredentials({...credentials, password: e.target.value})} />
+    <input type="text" placeholder="name" onChange={e => setCredentials({...credentials, name: e.target.value})} />
+    <input type="text" placeholder="email" onChange={e => setCredentials({...credentials, email: e.target.value})} />
+    <input type="text" placeholder='password' onChange={e => setCredentials({...credentials, password: e.target.value})} />
     <button onClick={Register} className="bg-gray-400">register</button>
   </>
 }
+
+// https://authentication-system-4cka.onrender.com/log-in

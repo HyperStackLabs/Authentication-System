@@ -1,15 +1,13 @@
 import { User } from "@/types";
 import { XFetch } from "@/utils/XFetch";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function useUser(){
   const [user, setUser] = useState<User | null>(null)
-  const router = useRouter()
   useEffect(()  => {
     async function getUser(){
       try{
-      const response = await XFetch('https://authentication-system-4cka.onrender.com/verify-token', {
+      const response = await XFetch('http://localhost:4500/verify-token', {
         method: 'GET'
       })
       const res = await response.json()
@@ -22,3 +20,5 @@ export default function useUser(){
   }, [])
   return {user, setUser}
 }
+
+// https://authentication-system-4cka.onrender.com/verify-token
