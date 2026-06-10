@@ -9,7 +9,7 @@ import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 const app = express()
 
-const limiter = rateLimit({windowMs: 5 * 1000 * 60})
+const limiter = rateLimit({windowMs: 5 * 1000 * 60, limit: 10})
 app.use(cookieParser(), helmet(), limiter)
 app.use(express.json({limit: '1mb'}))
 app.use(cors({
