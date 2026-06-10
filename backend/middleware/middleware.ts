@@ -7,7 +7,7 @@ export interface AuthRequest extends Request  {
 
 export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
     const token = req.cookies.token
-    if(!token) return res.status(401).json({message: 'Fuck off.'})
+    if(!token) return res.status(401).json({message: 'You are not a user here.'})
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET!)
         req.user = decoded

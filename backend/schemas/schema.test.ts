@@ -5,14 +5,14 @@ describe('loginSchema', () => {
     it('should reject an improper email', () => {
         const loginTesting = loginSchema.safeParse({
             email: 'email123',
-            password: 'ilovemesomethiccthighs'
+            password: 'password123'
         })
         expect(loginTesting.success).toBe(false)
     })
     it('should accept a proper email', () => {
         const loginTesting = loginSchema.safeParse({
             email: 'email123@gmail.com',
-            password: 'ilovemesomethiccthighs'
+            password: 'password123'
         })
         expect(loginTesting.success).toBe(false)
     })
@@ -22,7 +22,7 @@ describe('registerSchema', () => {
         const registrationTesting = signUpSchema.safeParse({
             name: 'ez',
             email: 'email123@gmail.com',
-            password: 'ilovemesomethiccthighs',
+            password: 'password123',
             id: '123'
         })
         expect(registrationTesting.success).toBe(false)
@@ -31,7 +31,7 @@ describe('registerSchema', () => {
         const registrationTesting = signUpSchema.safeParse({
             name: 'XenoBlitz',
             email: 'test@test.com',
-            password: 'abc123',
+            password: 'password123',
             id: '123'
         })
         expect(registrationTesting.success).toBe(true)
