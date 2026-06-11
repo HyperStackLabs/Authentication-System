@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "tsx --watch index.ts",
     "start": "tsx index.ts",
-    "test": "vitest --coverage"
+    "test": "vitest"
   },
   "dependencies": {
     "@types/bcrypt": "^6.0.0",

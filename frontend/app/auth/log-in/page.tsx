@@ -1,5 +1,5 @@
 'use client'
-import { Credentials, credentialsSchema } from "@/types"
+import { Credentials, credentialsSchema } from "@/types/types"
 import { XFetch } from "@/utils/XFetch"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -17,7 +17,7 @@ const Page = () => {
                 console.log(validation.error.issues)
                 return
             }
-            const response = await XFetch('http://localhost:4500/log-in', {
+            const response = await XFetch('https://authentication-system-3-n0xw.onrender.com/log-in', {
                 body: JSON.stringify({...credentials}),
                 method: 'POST'
             })
@@ -36,7 +36,3 @@ const Page = () => {
 }
 
 export default Page
-
-
-
-// https://authentication-system-4cka.onrender.com/log-in

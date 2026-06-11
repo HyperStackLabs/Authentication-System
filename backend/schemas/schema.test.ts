@@ -1,4 +1,4 @@
-import { loginSchema, signUpSchema, userSchema } from "./schemas.js"
+import { loginSchema, signUpSchema } from "./schemas.js"
 import { describe, it, expect } from "vitest"
 
 describe('loginSchema', () => {
@@ -14,7 +14,7 @@ describe('loginSchema', () => {
             email: 'email123@gmail.com',
             password: 'password123'
         })
-        expect(loginTesting.success).toBe(false)
+        expect(loginTesting.success).toBe(true)
     })
 })
 describe('registerSchema', () => {

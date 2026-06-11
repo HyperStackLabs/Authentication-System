@@ -1,4 +1,4 @@
-import { User } from "@/types";
+import { User } from "@/types/types";
 import { XFetch } from "@/utils/XFetch";
 import { useEffect, useState } from "react";
 
@@ -20,5 +20,3 @@ export default function useUser(){
   }, [])
   return {user, setUser}
 }
-
-// https://authentication-system-4cka.onrender.com/verify-token

@@ -9,12 +9,12 @@ import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 const app = express()
 
-const limiter = rateLimit({windowMs: 5 * 1000 * 60, limit: 10})
-app.use(cookieParser(), helmet(), limiter)
+const limiter = rateLimit({windowMs: 15 * 1000 * 60, max: 700})
+app.use(cookieParser(), helmet())
 app.use(express.json({limit: '1mb'}))
 app.use(cors({
     origin: function (origin, callback) {
-        if (!origin || origin.includes('localhost') || origin.endsWith('.vercel.app')) {
+        if (!origin || origin.includes('localhost') || origin.endsWith('xenoblitzs-projects.vercel.app')) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));

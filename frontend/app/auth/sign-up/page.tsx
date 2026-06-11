@@ -2,7 +2,7 @@
 import generateID from "@/utils/generateID";
 import { XFetch } from "@/utils/XFetch";
 import { useState } from "react";
-import { UserSchema } from "@/types";
+import { UserSchema } from "@/types/types";
 
 export default function Home() {
   const [credentials, setCredentials] = useState({
@@ -17,9 +17,9 @@ export default function Home() {
         console.log(validation.error.issues)
         return
       }
-      await XFetch('http://localhost:4500/sign-up', {
+      await XFetch('https://authentication-system-3-n0xw.onrender.com/sign-up', {
         method: 'POST',
-        body: JSON.stringify({...credentials, id: generateID()})
+        body: JSON.stringify({...credentials, id: generateID(20)})
       })
     }catch(error){
       console.log(error)
@@ -32,5 +32,3 @@ export default function Home() {
     <button onClick={Register} className="bg-gray-400">register</button>
   </>
 }
-
-// https://authentication-system-4cka.onrender.com/log-in
