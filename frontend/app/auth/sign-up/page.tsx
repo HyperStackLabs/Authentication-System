@@ -17,7 +17,7 @@ export default function Home() {
         console.log(validation.error.issues)
         return
       }
-      await XFetch('https://authentication-system-3-n0xw.onrender.com/sign-up', {
+      await XFetch('https://authentication-system-4-0mer.onrender.com/sign-up', {
         method: 'POST',
         body: JSON.stringify({...credentials, id: generateID(20)})
       })

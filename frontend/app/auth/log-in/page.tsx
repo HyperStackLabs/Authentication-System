@@ -17,7 +17,7 @@ const Page = () => {
                 console.log(validation.error.issues)
                 return
             }
-            const response = await XFetch('https://authentication-system-3-n0xw.onrender.com/log-in', {
+            const response = await XFetch('https://authentication-system-4-0mer.onrender.com/log-in', {
                 body: JSON.stringify({...credentials}),
                 method: 'POST'
             })
