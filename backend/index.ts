@@ -13,13 +13,7 @@ const limiter = rateLimit({windowMs: 15 * 1000 * 60, max: 700})
 app.use(cookieParser(), helmet(), limiter)
 app.use(express.json({limit: '1mb'}))
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || origin.includes('localhost') || origin.endsWith('xenoblitzs-projects.vercel.app')) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: 'https://authentication-system-imz2-lb0b0ckrr-xenoblitzs-projects.vercel.app/',
     credentials: true
 }));
 connectDB()
