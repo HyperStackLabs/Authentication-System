@@ -1,5 +1,4 @@
 'use client'
-import generateID from "@/utils/generateID";
 import { XFetch } from "@/utils/XFetch";
 import { useState } from "react";
 import { UserSchema } from "@/types/types";
@@ -17,9 +16,9 @@ export default function Home() {
         console.log(validation.error.issues)
         return
       }
-      await XFetch('https://authentication-system-4-0mer.onrender.com/sign-up', {
+      await XFetch('http://localhost:4500/sign-up', {
         method: 'POST',
-        body: JSON.stringify({...credentials, id: generateID(20)})
+        body: JSON.stringify({...credentials})
       })
     }catch(error){
       console.log(error)

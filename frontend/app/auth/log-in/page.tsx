@@ -17,7 +17,7 @@ const Page = () => {
                 console.log(validation.error.issues)
                 return
             }
-            const response = await XFetch('https://authentication-system-4-0mer.onrender.com/log-in', {
+            const response = await XFetch('http://localhost:4500/log-in', {
                 body: JSON.stringify({...credentials}),
                 method: 'POST'
             })
@@ -29,8 +29,8 @@ const Page = () => {
         }
     }
   return <>
-    <input type="text" placeholder="email" onChange={e => setCredentials({...credentials, email: e.target.value})} />
-    <input type="text" placeholder="password" onChange={e => setCredentials({...credentials, password: e.target.value})} />
+    <input type="email" placeholder="email" onChange={e => setCredentials({...credentials, email: e.target.value})} />
+    <input type="password" placeholder="password" onChange={e => setCredentials({...credentials, password: e.target.value})} />
     <button onClick={Log_in} className="bg-gray-400">log in</button>
   </>
 }

@@ -1,0 +1,5 @@
+export const CONFIG = {
+    JWT_EXPIRES_IN: 86400,
+    BCRYPT_SALT_ROUNDS: 10,
+    COOKIE_MAX_AGE: 24 * 60 * 60 * 1000
+}

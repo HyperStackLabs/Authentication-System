@@ -1,4 +1,4 @@
-import { loginSchema, signUpSchema } from "./schemas.js"
+import { loginSchema, signUpSchema } from "../schemas/schemas.js"
 import { describe, it, expect } from "vitest"
 
 describe('loginSchema', () => {

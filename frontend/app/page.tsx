@@ -5,12 +5,11 @@ import { XFetch } from "@/utils/XFetch";
 export default function Home() {
   const {user, setUser} = useUser()
   async function signOut(){
-    await XFetch('https://authentication-system-4-0mer.onrender.com/sign-out', {
+    await XFetch('http://localhost:4500/sign-out', {
       method: 'POST'
     })
     setUser(null)
-  } 
-  console.log(user) 
+  }
   return <div className="flex justify-around">
     <h1>{user?.name}</h1>
     <button onClick={signOut} className="bg-red-400">sign out</button>

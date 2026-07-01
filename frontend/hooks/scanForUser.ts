@@ -7,11 +7,12 @@ export default function useUser(){
   useEffect(()  => {
     async function getUser(){
       try{
-      const response = await XFetch('https://authentication-system-4-0mer.onrender.com/verify-token', {
+      const response = await XFetch('http://localhost:4500/verify-token', {
         method: 'GET'
       })
       const res = await response.json()
       setUser(res)
+      console.log(user)
     }catch(error){
       console.log(error)
     }

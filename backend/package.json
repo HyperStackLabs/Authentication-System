@@ -16,15 +16,17 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "express-rate-limit": "^8.5.2",
-    "fs": "^0.0.1-security",
     "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.0",
     "node-modules": "^1.0.1",
-    "nodemon": "^3.1.14",
     "tsx": "^4.22.4",
     "vitest": "^4.1.8",
     "zod": "^4.4.3"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/supertest": "^7.2.0",
+    "supertest": "^7.2.2"
+  }
 }

@@ -1,25 +1,6 @@
 import 'dotenv/config'
-import express, { type NextFunction } from 'express'
-import cookieParser from 'cookie-parser'
-import cors from 'cors'
 import { connectDB } from './database/db.js'
-import authRouter from './app.js'
-import { type Request, type Response } from 'express'
-import helmet from 'helmet'
-import rateLimit from 'express-rate-limit'
-const app = express()
+import createServer from './server/server.js'
 
-const limiter = rateLimit({windowMs: 15 * 1000 * 60, max: 700})
-app.use(cookieParser(), helmet(), limiter)
-app.use(express.json({limit: '1mb'}))
-app.use(cors({
-    origin: 'https://authentication-system-imz2-lb0b0ckrr-xenoblitzs-projects.vercel.app/',
-    credentials: true
-}));
 connectDB()
-app.use(authRouter)
-app.use((err: any, _: Request, res: Response, next: NextFunction) => {
-    if (res.headersSent) return next(err)
-    return res.status(err.status || 500).json({message: err.message || "There's a problem here..."})
-})
-app.listen(4500, '0.0.0.0', () => console.log('running on 4500'))
+createServer().listen(4500, '0.0.0.0', () => console.log('running on 4500'))
