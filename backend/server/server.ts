@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser'
 export default function createServer(){
     const app = express()
     app.set('trust proxy', 1)
-    const limiter = rateLimit({windowMs: 15 * 1000 * 60, max: 700})
+    const limiter = rateLimit({windowMs: 15 * 1000 * 60, limit: 700})
     app.use(helmet())
     app.use(limiter)
     app.use(cookieParser())

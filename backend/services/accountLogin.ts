@@ -1,21 +1,20 @@
 import bcrypt from 'bcrypt'
 import {CONFIG} from '../utils/tokenConfig.js'
 import jwt from 'jsonwebtoken'
-import { userSchema } from '../schemas/schemas.js'
-import mongoose from 'mongoose'
+import { users } from '../controllers/authcontrollers.js'
+import { AuthError } from '../utils/customErrors.js'
 
-const users = mongoose.model('users', userSchema)
 export default async function accountLogin(email: string, password: string){
     const foundUser = await users.findOne({email})
             if(!foundUser?.password){
-                throw new Error('Your password or email is wrong.')
+                throw new AuthError('Your password or email is wrong.')
             }
             const isTheSame = await bcrypt.compare(password, foundUser.password as string)
             if(!isTheSame){
-                throw new Error('Your password or email is wrong.')
+                throw new AuthError('Your password or email is wrong.')
             }
             if(!process.env.JWT_SECRET){
-                throw new Error('JWT_SECRET is missing')
+                throw new AuthError('JWT_SECRET is missing', 404)
             }
             interface JwtPayloadID {
                 id: string

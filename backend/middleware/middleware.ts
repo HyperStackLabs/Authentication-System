@@ -12,7 +12,6 @@ export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction)
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as AuthTokenPayload
         req.user = decoded
-        console.log(decoded)
         next()
     }catch(error){
         if(error instanceof jwt.JsonWebTokenError || error instanceof jwt.TokenExpiredError){

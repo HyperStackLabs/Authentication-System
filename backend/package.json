@@ -19,7 +19,6 @@
     "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.0",
-    "node-modules": "^1.0.1",
     "tsx": "^4.22.4",
     "vitest": "^4.1.8",
     "zod": "^4.4.3"

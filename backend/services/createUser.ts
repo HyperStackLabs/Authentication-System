@@ -1,9 +1,8 @@
-import mongoose from "mongoose"
-import { userSchema } from "../schemas/schemas.js"
 import bcrypt from 'bcrypt'
 import {CONFIG} from '../utils/tokenConfig.js'
+import { users } from "../controllers/authcontrollers.js"
+import { AuthError } from '../utils/customErrors.js'
 
-const users = mongoose.model('users', userSchema)
 interface User {
     name: string
     email: string
@@ -19,7 +18,7 @@ export default async function createUser(userData: User){
         ]
     })
     if(anotherUser){
-        throw new Error('Users email or name already exists.')
+        throw new AuthError('Users email or name already exists.', 409)
     }
     const newUser = new users({
         name,
